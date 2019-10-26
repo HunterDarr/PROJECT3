@@ -75,5 +75,11 @@ public class DateTimeOneTest {
 		test.compareYear();
 
 	}
+	
+	@Test
+	public void testDateHashMap()  {
+		DateTimeTwo test = new DateTimeTwo();
+		test.dateHashMap();
+	}
 
 }
