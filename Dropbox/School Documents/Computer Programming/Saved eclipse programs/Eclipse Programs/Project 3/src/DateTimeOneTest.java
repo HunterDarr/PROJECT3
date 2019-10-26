@@ -77,9 +77,17 @@ public class DateTimeOneTest {
 	}
 	
 	@Test
-	public void testDateHashMap()  {
+	public void testDateHashMap() throws IOException  {
+		System.out.println("testDateHashMap");
 		DateTimeTwo test = new DateTimeTwo();
 		test.dateHashMap();
+	}
+	
+	@Test
+	public void testDateHashMapSorted() throws IOException   {
+		System.out.println("testDateHashMapSorted");
+		DateTimeTwo test = new DateTimeTwo();
+		test.dateHashMapSorted();
 	}
 
 }
