@@ -14,6 +14,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class DateTimeTwo {
 	private Calendar cal = Calendar.getInstance();
@@ -40,20 +42,21 @@ public class DateTimeTwo {
 	}
 	
 	public void compareYear() throws IOException   {
-		BufferedReader fileIn = new BufferedReader(new FileReader("Dates.txt"));
-		readDates = new HashMap<LocalDate, Integer>();
-		DateTimeFormatter format = DateTimeFormatter.ofPattern("MM.dd.yyyy");
-		String nextLine = fileIn.readLine();
-		int index = 1;
-		while (nextLine != null)   {
-			readDates.put(LocalDate.parse(nextLine, format), index);
-			index = index + 1;
-			nextLine = fileIn.readLine();
-		}	
-		
+//		BufferedReader fileIn = new BufferedReader(new FileReader("Dates.txt"));
+//		readDates = new HashMap<LocalDate, Integer>();
+//		DateTimeFormatter format = DateTimeFormatter.ofPattern("MM.dd.yyyy");
+//		String nextLine = fileIn.readLine();
+//		int index = 1;
+//		while (nextLine != null)   {
+//			readDates.put(LocalDate.parse(nextLine, format), index);
+//			index = index + 1;
+//			nextLine = fileIn.readLine();
+//		}	
+		readDates();
+		int hashSize = readDates.size() + 1;
 		LocalDate today = LocalDate.now();
 
-		for (int i = 1; i < index; i++)  {
+		for (int i = 1; i < hashSize; i++)  {
 			for ( LocalDate date: readDates.keySet() )   {
 				if ( i == readDates.get(date))   {
 					String distanceBetweenDates = distanceBetween(date, today);
@@ -81,9 +84,34 @@ public class DateTimeTwo {
 	}
 	
 	
-	public void dateHashMap()   {
-		for ( LocalDate date: readDates.keySet())   {
-			System.out.println(date.toString());
+	public void dateHashMap() throws IOException   {
+		readDates();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		for ( LocalDate date: readDates.keySet() )   {
+			System.out.println(date.format(formatter) + ":" + readDates.get(date));
+		}
+	}
+	
+	private void readDates() throws IOException   {
+		BufferedReader fileIn = new BufferedReader(new FileReader("Dates.txt"));
+		readDates = new HashMap<LocalDate, Integer>();
+		DateTimeFormatter format = DateTimeFormatter.ofPattern("MM.dd.yyyy");
+		String nextLine = fileIn.readLine();
+		int index = 1;
+		while (nextLine != null)   {
+			readDates.put(LocalDate.parse(nextLine, format), index);
+			index = index + 1;
+			nextLine = fileIn.readLine();
+		}	
+	}
+	
+	public void dateHashMapSorted() throws IOException   {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		readDates();
+		Map<LocalDate, Integer> testSort = new TreeMap<LocalDate, Integer>(readDates);
+		for ( LocalDate date: testSort.keySet())   {
+			System.out.println(date.format(formatter) + ":" + testSort.get(date));
+			
 		}
 	}
 	
