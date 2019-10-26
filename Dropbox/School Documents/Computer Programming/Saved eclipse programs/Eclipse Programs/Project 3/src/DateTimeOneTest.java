@@ -89,5 +89,11 @@ public class DateTimeOneTest {
 		DateTimeTwo test = new DateTimeTwo();
 		test.dateHashMapSorted();
 	}
+	
+	@Test public void testCalAverage()   {
+		System.out.println("testCalAverage");
+		MesoAsciiCal test = new MesoAsciiCal(new MesoStation("NRMN"));
+		test.calAverage();
+	}
 
 }
