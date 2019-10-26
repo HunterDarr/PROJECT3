@@ -9,6 +9,7 @@ import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -17,6 +18,7 @@ import java.util.HashMap;
 public class DateTimeTwo {
 	private Calendar cal = Calendar.getInstance();
 	private int month = cal.get(Calendar.MONTH);
+	private HashMap<LocalDate, Integer> readDates;
 	
 	public void daysOfCurrentMonth()   {
 		GregorianCalendar dayCalendar = new GregorianCalendar(2019, month, 10);
@@ -39,18 +41,54 @@ public class DateTimeTwo {
 	
 	public void compareYear() throws IOException   {
 		BufferedReader fileIn = new BufferedReader(new FileReader("Dates.txt"));
-		HashMap<LocalDate, Integer> readDates = new HashMap<LocalDate, Integer>();
+		readDates = new HashMap<LocalDate, Integer>();
 		DateTimeFormatter format = DateTimeFormatter.ofPattern("MM.dd.yyyy");
 		String nextLine = fileIn.readLine();
-		int i = 1;
+		int index = 1;
 		while (nextLine != null)   {
-			readDates.put(LocalDate.parse(nextLine, format), i);
-			i = i + 1;
+			readDates.put(LocalDate.parse(nextLine, format), index);
+			index = index + 1;
 			nextLine = fileIn.readLine();
 		}	
+		
+		LocalDate today = LocalDate.now();
+
+		for (int i = 1; i < index; i++)  {
+			for ( LocalDate date: readDates.keySet() )   {
+				if ( i == readDates.get(date))   {
+					String distanceBetweenDates = distanceBetween(date, today);
+					boolean isLeapYear = date.isLeapYear();
+					if (isLeapYear)   {
+						System.out.println( date.getYear() + " is a leap year, and Difference: " + distanceBetweenDates);
+					}
+					else   {
+						System.out.println( date.getYear() + " is not a leap year, and Difference: " + distanceBetweenDates);
+					}
+				}
+
+			}
+		}
 	}
 	
-	for ( LocalDate )
+	private String distanceBetween(LocalDate difference, LocalDate now)   {
+		LocalDate date = now.minusYears(difference.getYear());
+		date = date.minusMonths(difference.getMonthValue());
+		date = date.minusDays(difference.getDayOfMonth());
+		int years = date.getYear();
+		int months = date.getMonthValue();
+		int days = date.getDayOfMonth();
+		return years + " years, " + months + " months, and " + days + " days.";
+	}
+	
+	
+	public void dateHashMap()   {
+		for ( LocalDate date: readDates.keySet())   {
+			System.out.println(date.toString());
+		}
+	}
+	
+	
+	
 	
 
 }
