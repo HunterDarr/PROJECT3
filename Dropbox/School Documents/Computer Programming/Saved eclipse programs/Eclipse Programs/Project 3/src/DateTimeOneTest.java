@@ -90,10 +90,17 @@ public class DateTimeOneTest {
 		test.dateHashMapSorted();
 	}
 	
-	@Test public void testCalAverage()   {
+	@Test 
+	public void testCalAverage()   {
 		System.out.println("testCalAverage");
 		MesoAsciiCal test = new MesoAsciiCal(new MesoStation("NRMN"));
 		test.calAverage();
+	}
+	
+	@Test
+	public void testRead() throws IOException   {
+		System.out.println("testRead");
+		MesoEquivalent test = new MesoEquivalent("OKCE");
 	}
 
 }
