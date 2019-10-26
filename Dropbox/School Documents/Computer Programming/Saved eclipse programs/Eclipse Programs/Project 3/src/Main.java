@@ -174,7 +174,7 @@ public class Main
 			2004 is a leap year, and Difference: 15 years, 9 months, and 7 days.
 		 * 
 		 */
-	    dateTimeTwo.compareYear();
+	    dateTimeTwo.compareYear();  //Done
 	    System.out.println("\n");	    
 	    
 	    /**
@@ -184,7 +184,7 @@ public class Main
 			2019-05-30:3
 		 */
 	    
-	    dateTimeTwo.dateHashMap();
+	    dateTimeTwo.dateHashMap();   //Done
 	    System.out.println("\nNow the Hashmap:");	    
 	    
 	    /**
@@ -195,7 +195,7 @@ public class Main
 			1900-12-31:8
 			2000-12-15:5
 		 */
-	    dateTimeTwo.dateHashMapSorted();
+	    dateTimeTwo.dateHashMapSorted();   //Done
 	    System.out.println("\nSorted map:");	    
 	    
 	    /**
@@ -210,13 +210,13 @@ public class Main
 		HashMap<String, Integer> asciiVal = new HashMap<String, Integer>();
 		asciiVal.put(stId, asciiAvg);
 		System.out.print("ASCII average: ");
-		//System.out.println(asciiAvg);
-		
+//		System.out.println(asciiAvg); 
+		//I STOPPED HERE
 	    /**
 	     * Calculate and print the ASCII average as per PDF. This value for NRMN as a sample.
 		 * Output: 79
 		 */
-		System.out.println(asciiVal.get(stId));		
+		System.out.println(asciiVal.get(stId));	 //WHAT IS STID FOR???	
 		
 		MesoEquivalent mesoEqual = new MesoEquivalent(stId);		
 	    /**
